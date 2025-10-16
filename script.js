@@ -6,7 +6,8 @@ const output_timezone = document.getElementById("timezone")
 const output_isp = document.getElementById("isp")
 
 const apiEndpointStart = `https://geo.ipify.org/api/v2/country,city?apiKey=at_ygXPWl3Mk3fLcoIq0eaD1SuZT5Efx&ipAddress=`
-let latestIPAddress = ``
+let latestLongitude = 0
+let latestLatitude = 0
 
 getAddressBtn.addEventListener("click", () => {
     event.preventDefault()
@@ -19,17 +20,20 @@ async function getAddress(userIP) {
         return
     }
     const locationAsJson = await iplocation.json()
+
+    latestLatitude = locationAsJson.location.lat
+    latestLongitude = locationAsJson.location.lng
     output_ipAddress.innerText = locationAsJson.ip
     output_location.innerText = `${locationAsJson.location.city}, ${locationAsJson.location.region}`
     output_timezone.innerText = `UTC ${locationAsJson.location.timezone}`
     output_isp.innerText = `${locationAsJson.isp}`
+    console.log(locationAsJson)
+    map.setView([latestLatitude, latestLongitude], 13)
 }
-getAddress(searchBox.value)
-
-const map = L.map(`map`).setView([51.505, -0.09], 13);
+const map = L.map(`map`).setView([latestLatitude, latestLongitude], 13)
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution:
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(map);
-//let userMap = L.map(`map`).setView
+    }).addTo(map)
+getAddress(searchBox.value)
