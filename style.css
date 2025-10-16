@@ -1,6 +1,20 @@
 body {
     background-color: #1670c4;
 }
-.whiteText {
-    color: white;
+@font-face {
+    font-family: Rubik;
+    src: url(Rubik.ttf);
+}
+h1 {
+    font-family: Rubik;
+    font-weight: 600;
+    color: hsl(0, 0%, 59%)
+}
+p {
+    font-family: Rubik;
+    font-weight: 600;
+    color: hsl(0, 0%, 17%)
+}
+#map { 
+    height: 480px; 
 }
