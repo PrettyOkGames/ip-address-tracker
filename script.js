@@ -29,6 +29,9 @@ async function getAddress(userIP) {
     output_isp.innerText = `${locationAsJson.isp}`
     console.log(locationAsJson)
     map.setView([latestLatitude, latestLongitude], 13)
+    L.marker([latestLatitude, latestLongitude]).addTo(map)
+    .bindPopup(`${locationAsJson.location.city}, ${locationAsJson.location.region}`)
+    .openPopup();
 }
 const map = L.map(`map`).setView([latestLatitude, latestLongitude], 13)
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
