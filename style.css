@@ -8,12 +8,12 @@ body {
 h1 {
     font-family: Rubik;
     font-weight: 600;
-    color: hsl(0, 0%, 59%)
+    color: white
 }
 h2 {
     font-family: Rubik;
     font-weight: 600;
-    color: white
+    color: hsl(0, 0%, 59%)
 }
 p {
     font-family: Rubik;
